@@ -31,7 +31,12 @@ class Event
   end
 
   def sorted_item_list
-    
+    sorted_items = all_items.sort_by do |item|
+      item.name
+    end
+    sorted_items.map do |item|
+      item.name
+    end
   end
 
 
