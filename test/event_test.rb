@@ -53,6 +53,15 @@ class EventTest < Minitest::Test
     assert_equal expected2, @event.food_trucks_that_sell(@item4)
   end
 
+  def test_it_can_list_all_items
+    @food_truck3.stock(@item3, 10)
+    @event.add_food_truck(@food_truck1)
+    @event.add_food_truck(@food_truck2)
+    @event.add_food_truck(@food_truck3)
+    expected = [@item1, @item2, @item4, @item3]
+    assert_equal expected, @event.all_items
+  end
+
   def test_it_can_return_list_of_sorted_items
     @food_truck3.stock(@item3, 10)
     @event.add_food_truck(@food_truck1)
