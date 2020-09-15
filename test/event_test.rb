@@ -72,7 +72,6 @@ class EventTest < Minitest::Test
   end
 
   def test_it_can_provide_a_total_inventory
-    skip
     @food_truck3.stock(@item3, 10)
     @event.add_food_truck(@food_truck1)
     @event.add_food_truck(@food_truck2)

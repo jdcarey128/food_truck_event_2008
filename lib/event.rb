@@ -39,12 +39,14 @@ class Event
     end
   end
 
-
-
   def total_inventory
-    @food_trucks.reduce(Hash.new()) do |hash, food_truck|
+    all_items.reduce(Hash.new(Hash.new(quantity: 0, food_trucks: []))) do |hash, item|
+      hash[item][:quantity] = @food_trucks.map do |food_truck|
+        food_truck.check_stock(item)
+      end.sum
+      hash[item][:food_trucks] = food_trucks_that_sell(item)
+      hash
     end
-
   end
 
 end
