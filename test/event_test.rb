@@ -19,6 +19,7 @@ class EventTest < Minitest::Test
     @food_truck2.stock(@item4, 50)
     @food_truck2.stock(@item3, 25)
     @food_truck3 = FoodTruck.new("Palisade Peach Shack")
+    @food_truck3.stock(@item1, 65)
   end
 
   def test_it_exists_and_has_attributes
@@ -26,6 +27,13 @@ class EventTest < Minitest::Test
     assert_equal [], @event.food_trucks
   end
 
-  
+  def test_it_can_add_food_trucks_to_event_list
+    @event.add_food_truck(@food_truck1)
+    @event.add_food_truck(@food_truck2)
+    @event.add_food_truck(@food_truck3)
+    expected = [@food_truck1, @food_truck2, @food_truck3]
+    assert_equal expected, @event.food_trucks
+  end
+
 
 end
