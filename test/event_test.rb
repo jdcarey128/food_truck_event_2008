@@ -98,12 +98,12 @@ class EventTest < Minitest::Test
   end
 
   def test_it_can_list_overstocked_items
-    skip 
+    skip
     @food_truck3.stock(@item3, 10)
     @event.add_food_truck(@food_truck1)
     @event.add_food_truck(@food_truck2)
     @event.add_food_truck(@food_truck3)
-    assert_equal @item1, @event.overstocked_items
+    assert_equal [@item1], @event.overstocked_items
   end
 
 
