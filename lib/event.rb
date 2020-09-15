@@ -22,4 +22,12 @@ class Event
     end
   end
 
+
+
+  def total_inventory
+    @food_trucks.reduce(Hash.new()) do |hash, food_truck|
+    end
+
+  end
+
 end

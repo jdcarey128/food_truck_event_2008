@@ -53,5 +53,41 @@ class EventTest < Minitest::Test
     assert_equal expected2, @event.food_trucks_that_sell(@item4)
   end
 
+  def test_it_can_return_list_of_sorted_items
+    @food_truck3.stock(@item3, 10)
+    @event.add_food_truck(@food_truck1)
+    @event.add_food_truck(@food_truck2)
+    @event.add_food_truck(@food_truck3)
+    expected = ["Apple Pie (Slice)", "Banana Nice Cream", "Peach Pie (Slice)", "Peach-Raspberry Nice Cream"]
+    assert_equal expected, @event.sorted_item_list
+  end
+
+  def test_it_can_provide_a_total_inventory
+    skip
+    @food_truck3.stock(@item3, 10)
+    @event.add_food_truck(@food_truck1)
+    @event.add_food_truck(@food_truck2)
+    @event.add_food_truck(@food_truck3)
+    expected = {
+      @item1 => {
+        quantity: 100,
+        food_trucks: [@food_truck1, @food_truck3]
+      },
+      @item2 => {
+        quantity: 7,
+        food_trucks: [@food_truck1]
+      },
+      @item4 => {
+        quantity: 50,
+        food_trucks: [@food_truck2]
+      },
+      @item3 => {
+        quantity: 35,
+        food_trucks: [@food_truck2, @food_truck3],
+      }
+    }
+    assert_equal expected, @event.total_inventory
+  end
+
 
 end
