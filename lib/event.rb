@@ -16,6 +16,10 @@ class Event
     end
   end
 
-  
+  def food_trucks_that_sell(item)
+    @food_trucks.select do |food_truck|
+      food_truck.check_stock(item) > 0
+    end
+  end
 
 end
